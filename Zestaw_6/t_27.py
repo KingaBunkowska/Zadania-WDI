@@ -1,5 +1,5 @@
 import math
-
+# zadanie do poprawy - nie działa dla przypadku gdy kwadraty są na tej samej wysokości, trzeba chyba po prostu zrobić tablicę kwadratów włączonych, i sprawdzać czy dokładany nie nachodzi na żadne z nich
 
 def new_boarders(boarders, i):
     global t
@@ -26,13 +26,22 @@ def overlapping(boarders, j):
     return x[0] or x[1]
 
 
+def overlappingH(squares, j):
+    global t
+    for i in range(len(squares)):
+        if overlapping(t[squares[i]], j):
+            return 0
+
+    return 1
+
 def area(i):
     return (t[i][1] - t[i][0]) ** 2
 
 
-def square(i = 0, boarders = [-math.inf, -math.inf, -math.inf, -math.inf], number_of_squares = 1, c_sum = 0, needed_sum = 13):
+def square(i = 0, boarders = [-math.inf, -math.inf, -math.inf, -math.inf], number_of_squares = 1, c_sum = 0, needed_sum = 13, squares = []):
     global flag
     global t
+    print(squares)
     print(number_of_squares, i, c_sum)
     if flag == 0 and c_sum <= needed_sum:
         boarders = new_boarders(boarders, i)
@@ -42,8 +51,11 @@ def square(i = 0, boarders = [-math.inf, -math.inf, -math.inf, -math.inf], numbe
             return 1
 
         for j in range(i, len(t)):
-            if overlapping(boarders, j) == 0:
-                return square(j, boarders, number_of_squares + 1, c_sum + area(j))
+            if overlappingH(squares, j) == 0:
+                squares.append(j)
+                return square(j, boarders, number_of_squares + 1, c_sum + area(j), needed_sum, squares)
+                print("pop")
+                squares.pop()
 
     return 0
 
