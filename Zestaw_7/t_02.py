@@ -1,37 +1,51 @@
 class List():
     def __init__(self, size):
-        for _ in range(size):
-            tmp = Node()
-            tmp.next = self.next
-            self.next = tmp
+        self.sentinel = Node(size)
+        prev = self.sentinel
+        for i in range(size):
+            tmp = Node(0)
+            prev.next = tmp
+            prev = tmp
 
+    def print(self):
+        size = self.sentinel.val
+        x = self.sentinel.next
+        while x!=None:
+            print(x.val)
+            x = x.next
 
+    def get_from_index(self,index):
+        size = self.sentinel.val
+        x = self.sentinel.next
 
+        if index >= size:
+            return "error"
 
-class Node():
-    def __init__(self, size = 1, value = 0):
-        for i in range(size-1):
-            tmp = Node()
-            tmp.next = self.next
-
-            self.val = value
-            self.next = None
-
-    def value(self, a):
-        x = self
-        for i in range(a):
-            if x == None:
-                return "error"
+        for _ in range(index):
             x = x.next
 
         return x.val
 
-    def print(self):
-        i = self
-        while i != None:
-            print(self.val)
-            i = i.next
+    def set_value(self, value, index):
+        size = self.sentinel.val
+        x = self.sentinel.next
+
+        if index>= size:
+            return "error"
+
+        for _ in range(index):
+            x = x.next
+
+        x.val = value
+
+class Node():
+    def __init__(self, value = 0):
+        self.val = value
+        self.next = None
 
 
-lista = List(3)
+lista = List(6)
+lista.print()
+lista.set_value(3, 3)
+print(lista.get_from_index(3))
 lista.print()
