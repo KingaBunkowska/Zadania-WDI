@@ -1,4 +1,4 @@
-# interative solution was easier to me
+# interative solution was easier
 
 def electrical_r(t, act):
     # 3 series and 3 parallel
@@ -12,12 +12,6 @@ def electrical_r(t, act):
             for a in range(0, len(t)):
                 if a!=i and a!=j and act == (t[a] * (t[i] + t[j]))/(t[i] + t[j] + t[a]) or act == (t[i] * t[j])/(t[i] + t[j]) + t[a]:
                     return 1
-
-
-
-
-
-
 
 
 t = [1, 2, 3, 4, 5, 6]

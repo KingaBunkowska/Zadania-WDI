@@ -1,4 +1,4 @@
-def division_into_summands(number, t, max_summ=0, i=0): # i checks whether it is first call to forbid one element
+def division_into_summands(number, t, max_summ=0, i=0): # i checks whether it is first call to forbid one element solution
     if number>0:
         for summ in range(max(1, max_summ), number + i):
             t.append(summ)

@@ -1,6 +1,5 @@
 import math
 
-
 def min_cost(chessboard, k, i, suma, sumaMin = math.inf):
     if i + 1 ==len(chessboard) and suma < sumaMin:
         return suma

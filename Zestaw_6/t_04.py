@@ -33,6 +33,7 @@ def knight(x=0, y=0, i=1):
             if jump_possible(a, b):
                     knight(a, b, i+1)
                     chessboard[a][b] = 0
+
         chessboard[x][y] = 0
 
 

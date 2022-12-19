@@ -1,5 +1,5 @@
 def hanoi(a, b, c, n):
-    print(a, b, c, n)
+    # print(a, b, c, n)
     if n>0:
         hanoi(a, c, b, n-1)
         b.append(a.pop())

@@ -22,12 +22,11 @@ def without_i(s, i):
 
 def make_words(vowel, value, s, i=0):
     global flag
-    if s=="ula": print("AAAAAA")
     if vowels(s) == vowel and weight(s) == value:
         flag = 1
         return s
     elif i >= len(s):
-        return "1"
+        return "0"
     elif flag==1:
         return ""
     else:
@@ -45,7 +44,7 @@ def words(s1, s2):
     if weight(s2) < value:
         return 0
 
-    x =  make_words(vowel, value, s2)
+    x = make_words(vowel, value, s2)
 
     if x == "0":
         return 0
@@ -54,4 +53,4 @@ def words(s1, s2):
 
 
 flag = 0
-print(words("exe", "aorighw"))
+print(words("exe", "bbbcdaa"))

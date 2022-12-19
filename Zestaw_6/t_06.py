@@ -1,5 +1,6 @@
 import math
 
+
 def f(i, sum_index, sum_ele):
     if sum_index == sum_ele and sum_ele != 0:
         return sum_ele
@@ -18,5 +19,5 @@ def f(i, sum_index, sum_ele):
             return min(a, b)
 
 
-t = [1, 7, 3, 5, 11, 2]
+t = [1, 7, 3, 5, 11, 2] # 1 - - 3 - 5
 print(f(0, 0, 0))
