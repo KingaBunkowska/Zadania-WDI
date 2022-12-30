@@ -51,9 +51,9 @@ class Node():
     def print(self):
         x = self
         while x != None:
-            print(x.val)
+            print(x.val, end=' ')
             x = x.next
-
+        print('')
     def pop(self, ele = None):
         if ele == None:
             i = j = self
