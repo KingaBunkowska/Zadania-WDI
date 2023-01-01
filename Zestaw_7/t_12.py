@@ -1,40 +1,20 @@
 class Node:
-    def __init__(self, val):
-        self.val = val
+    def __init__(self, string):
+        self.string = string
         self.next = None
 
-    # example of adding: list = list.add(3) # it should be fine to do just list.add(3, last = 1) (not first)
-    def add(self, val, sort = 0, first=0, last=1):
+    def add(self, string, first=0, last=1):
         x = self
-        if sort:
-            if x.val > val:
-                tmp = Node(x.val)
-                tmp.next = x.next
-                x.val = val
-                x.next = tmp
-
-                return self
-            while x.next != None:
-                if x.next.val >= val:
-                    tmp = Node(val)
-                    tmp.next = x.next
-                    x.next = tmp
-                    return self
-
-                x = x.next
-            tmp = Node(val)
-            x.next = tmp
-            return self
-        elif first:
-            tmp = Node(val)
+        if first:
+            tmp = Node(string)
             tmp.next = self
             return tmp
         elif last and first == 0:
-            tmp = Node(val)
+            tmp = Node(string)
             self.last().next = tmp
             return self
         else:
-            tmp = Node(val)
+            tmp = Node(string)
             tmp.next = x.next
             x.next = tmp
             return self
@@ -42,7 +22,7 @@ class Node:
     def print(self):
         x = self
         while x != None:
-            print(x.val, end=' ')
+            print(x.string, end=' ')
             x = x.next
         print('')
 
@@ -56,7 +36,7 @@ class Node:
         return a
 
     def size(self):
-        if self.val == None:
+        if self.string == None:
             return 0
         x = self
         i = 1
@@ -67,29 +47,30 @@ class Node:
 
         return i
 
-    def rm_key_or_add(self, key):
-        if self.val ==key:
-            return self.next
+    def key_add(self, key):
+        if self.string ==key:
+            return 0
 
         if self!=None and self.next!= None:
             x, y = self, self.next
+        else:
+            return "Blad"
 
         while y!=None:
-            if y.val == key:
-                x.next = y.next
-                return self
+            if y.string == key:
+                return 1
             x, y = y, y.next
 
         self.add(key)
-        return self
+        return 1
 
 
-test = Node(1)
-test.add(2)
-test.add(3)
-test.add(5)
-test.add(7)
-test.add(0)
+test = Node("1")
+test.add("2")
+test.add("3")
+test.add("5")
+test.add("7")
+test.add("0")
 test.print()
-test =test.rm_key_or_add(4)
+print(test.key_add("1"))
 test.print()

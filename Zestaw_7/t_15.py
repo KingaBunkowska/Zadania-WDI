@@ -67,3 +67,54 @@ class Node:
 
         return i
 
+    def rm_15(self):
+        def count_trinary(val):  #return tuple(no_of_one,  no_of_two)
+            trinary = ""
+            while val != 0:
+                trinary = str(val%3) + trinary
+                val //= 3
+
+            one = two = 0
+            for digit in trinary:
+                if digit == '1':
+                    one += 1
+                elif digit == '2':
+                    two += 1
+
+            return one, two
+
+        def to_rm(val):
+            one, two= count_trinary(val)
+            return one>two
+
+        if self.val == None:
+            return "Invalid list"
+
+        first = self
+        while to_rm(first.val) and first!= None:
+            first = first.next
+
+        if first == None:
+            first = Node(None)
+            return first
+
+        x, y = first, first.next
+        while y != None:
+            if to_rm(y.val):
+                y = y.next
+                x.next = y
+            else:
+                x, y = y, y.next
+
+        return first
+
+
+test = Node(1)
+test.add(4)
+test.add(5)
+test.add(8)
+test.add(9)
+test.add(10)
+test.print()
+test = test.rm_15()
+test.print()

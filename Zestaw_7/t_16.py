@@ -46,12 +46,14 @@ class Node:
             x = x.next
         print('')
 
+
     def last(self):
         if self == None:
             return None
         a, b = self, self.next
         while b != None:
             a, b = b, b.next
+
 
         return a
 
@@ -67,3 +69,71 @@ class Node:
 
         return i
 
+    def first_even_fives_in_octal(self):
+        def even_fives(val):  #return boolean
+            octal = ""
+            while val != 0:
+                octal = str(val%8) + octal
+                val //= 8
+
+            fives = 0
+            for digit in octal:
+                if digit == '5':
+                    fives += 1
+
+            return not fives % 2
+
+        if self.val == None:
+            return self
+
+        tmp = self
+        x = self.next
+        eligible = other = Node(None)
+        if even_fives(tmp.val):
+            eligible = tmp
+            eligible.next = None
+        else:
+            other = tmp
+            other.next = None
+
+        while x!= None:
+            tmp = x.next
+            x.next = None
+            if even_fives(x.val):
+                if eligible.val == None:
+                    eligible = x
+                else:
+                    eligible.last().next = x
+            else:
+                if other.val == None:
+                    other = x
+                else:
+                    other.last().next = x
+
+            x = tmp
+
+        other.last().next = None
+        eligible.last().next = other
+
+        return eligible
+
+
+test = Node(45) #even
+test.add(13)    #odd
+test.add(41)    #odd
+test.add(21)    #odd
+test.add(8)     #even
+test.add(7)     #even
+test.add(5)     #odd
+test.add(7)     #even
+test.add(5)     #odd
+test.add(45)    #even
+
+# 45 8 7 7 45 | 13 41 21 5 5
+
+test.print()
+test = test.first_even_fives_in_octal()
+test.print()
+
+test = Node(5)
+test.first_even_fives_in_octal()

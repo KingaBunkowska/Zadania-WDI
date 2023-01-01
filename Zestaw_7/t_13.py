@@ -67,3 +67,32 @@ class Node:
 
         return i
 
+    def rm_smaller(self):
+        if self.val == None or self.next == None:
+            return "Not valid list"
+
+        x, y = self, self.next
+        while y != None:
+            if x.val > y.val:
+                y = y.next
+                x.next = y
+            else:
+                x, y = x.next, y.next
+
+        return self
+
+
+test = Node(1)
+test.add(3)
+test.add(2)
+test.add(2)
+test.add(2)
+test.add(8)
+test.add(6)
+test.add(9)
+test.add(5)
+test.add(99)
+
+test.print()
+test = test.rm_smaller()
+test.print()

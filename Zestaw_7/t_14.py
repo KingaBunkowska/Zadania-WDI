@@ -67,3 +67,35 @@ class Node:
 
         return i
 
+    def rm_modulo(self):
+        if self.val == None or self.next == None:
+            return "Invalid list"
+
+        first = self
+        while first.next.val % first.val == 0:
+            first = first.next
+
+        x, y = first, first.next
+
+        while y!= None:
+            if y.val % x.val == 0:
+                y = y.next
+                x.next = y
+            else:
+                x, y = y, y.next
+
+        return first
+
+
+test = Node(2)
+test.add(4)
+test.add(8)
+test.add(9)
+test.add(3)
+test.add(27)
+test.add(4)
+test.add(5)
+test.add(10)
+test.print()
+test = test.rm_modulo()
+test.print()
